@@ -1,4 +1,4 @@
-package net.jsrois.springbootusercrud.models;
+package net.jsrois.libritos.models;
 
 import javax.persistence.*;
 

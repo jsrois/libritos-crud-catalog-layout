@@ -1,13 +1,13 @@
-package net.jsrois.springbootusercrud;
+package net.jsrois.libritos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootUsercrudApplication {
+public class LibritosApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootUsercrudApplication.class, args);
+        SpringApplication.run(LibritosApplication.class, args);
     }
 
 }

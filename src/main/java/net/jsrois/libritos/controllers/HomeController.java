@@ -1,4 +1,4 @@
-package net.jsrois.springbootusercrud.controllers;
+package net.jsrois.libritos.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

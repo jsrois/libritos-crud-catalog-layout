@@ -1,4 +1,4 @@
-package net.jsrois.springbootusercrud.models;
+package net.jsrois.libritos.models;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

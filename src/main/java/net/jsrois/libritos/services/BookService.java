@@ -1,7 +1,7 @@
-package net.jsrois.springbootusercrud.services;
+package net.jsrois.libritos.services;
 
-import net.jsrois.springbootusercrud.models.Book;
-import net.jsrois.springbootusercrud.models.BookRepository;
+import net.jsrois.libritos.models.Book;
+import net.jsrois.libritos.models.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
