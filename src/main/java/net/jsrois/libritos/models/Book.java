@@ -4,13 +4,14 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @Table(name = "books")
 public class Book implements Serializable {
     @Id
-    @GeneratedValue(strategy = SEQUENCE)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private String title;
     private String author;
