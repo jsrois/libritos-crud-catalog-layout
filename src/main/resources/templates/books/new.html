@@ -5,7 +5,10 @@
 <header th:replace="fragments/header"></header>
 <section class="container">
     <h1 th:text="${title}"></h1>
-    <form th:action="@{/books/new}" th:object="${book}" method="post">
+    <form th:action="@{/books/new}"
+          th:object="${book}"
+          method="post"
+          enctype="multipart/form-data">
         <div class="form-group">
             <input type="hidden" th:field="*{id}">
             <label class="col-md2" for="title">Title</label>
@@ -22,6 +25,12 @@
             <input th:field="*{category}" type="text" class="col-md6 form-control form-control-sm" id="category"
                    placeholder="Enter category">
         </div>
+
+        <label class="col-md2" for="image">Image</label>
+        <input th:name="image" type="file" class="col-md6 form-control-file form-control-sm" id="image"
+               accept="image/png, image/jpeg"
+               placeholder="Choose...">
+
         <div class="card-footer ">
             <input type="submit" class="btn btn-primary btn-sm" value="Save"/>
         </div>

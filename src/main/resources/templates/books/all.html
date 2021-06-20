@@ -7,6 +7,7 @@
     <h1 th:text="${title}"></h1>
     <div class="book-list">
         <div class="book" th:each="book: ${books}">
+            <img th:src="${book.imagePath}">
             <div th:text="${book.title}">Mark</div>
             <div th:text="${book.author}">Mark</div>
             <div th:text="${book.category}">Mark</div>

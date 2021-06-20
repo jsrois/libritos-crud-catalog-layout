@@ -1,5 +1,7 @@
 package net.jsrois.libritos.models;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 
 import java.io.Serializable;
@@ -16,6 +18,15 @@ public class Book implements Serializable {
     private String title;
     private String author;
     private String category;
+    private String imageName;
+
+    public String getImagePath() {
+        if (id == null || imageName == null) {
+            return "/images/default-book.png";
+        }
+
+        return String.format("%s/%s/%s", "/data", id, imageName);
+    }
 
     public Long getId() {
         return id;
@@ -57,5 +68,13 @@ public class Book implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageName() {
+        return imageName;
     }
 }

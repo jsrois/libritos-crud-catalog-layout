@@ -11,3 +11,7 @@
     border-radius: 15px;
     padding: 10px;
 }
+
+.book img {
+    width: 80%;
+}

@@ -1,12 +1,16 @@
 package net.jsrois.libritos.controllers;
 
 import net.jsrois.libritos.models.Book;
+import net.jsrois.libritos.services.BookCoverService;
 import net.jsrois.libritos.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -14,10 +18,12 @@ import java.util.List;
 public class BookController {
 
     private BookService bookService;
+    private BookCoverService bookCoverService;
 
     @Autowired
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, BookCoverService bookCoverService) {
         this.bookService = bookService;
+        this.bookCoverService = bookCoverService;
     }
 
     @GetMapping("")
@@ -37,8 +43,16 @@ public class BookController {
     }
 
     @PostMapping("/new")
-    String addBook(@ModelAttribute Book book) {
-        bookService.save(book);
+    String addBook(
+            @ModelAttribute Book book,
+            @RequestParam("image")MultipartFile imageFile ) throws IOException {
+
+        String imageName = StringUtils.cleanPath(imageFile.getOriginalFilename());
+        book.setImageName(imageName);
+        Long id = bookService.save(book).getId();
+
+        bookCoverService.saveBookCover(id, imageName, imageFile);
+
         return "redirect:/books";
     }
 

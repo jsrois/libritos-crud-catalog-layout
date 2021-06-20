@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# The path where we'll store the images
+data
