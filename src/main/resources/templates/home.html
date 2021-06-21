@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head"></head>
 <body>
 <header th:replace="fragments/header"></header>
-<section class="container">
+<section class="container" sec:authorize="isAuthenticated()">
     <h2>Welcome to our library. </h2>
     <p>Go to the <a href="/books/">Books</a> section or <a href="/books/new">create a new book</a></p>
+</section>
+<section class="container" sec:authorize="isAnonymous()">
+    <h2>Welcome to our library. </h2>
+    <p>Go to the <a href="/books/">Books</a> section or <a href="/login">Log In</a></p>
 </section>
 <footer th:replace="fragments/footer"></footer>
 </body>

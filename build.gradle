@@ -21,6 +21,8 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.hamcrest:hamcrest:2.2'
+
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 }
 
 test {
