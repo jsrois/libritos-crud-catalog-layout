@@ -6,6 +6,8 @@
 <section class="container">
     <h1 th:text="${title}"></h1>
     <div class="book-list">
+        <p th:if="${books.isEmpty()}"
+             th:text="'No books yet! Use the \'New\' button to add some books.'"></p>
         <div class="book" th:each="book: ${books}">
             <div class="img-container"><img th:src="${book.imagePath}"></div>
             <div class="info">
