@@ -38,3 +38,11 @@
 .book .buttons {
     margin-top: 10px;
 }
+
+.book-filters {
+    display: flex;
+}
+
+.book-filters li {
+    margin: 0 15px;
+}

@@ -17,7 +17,10 @@ public class Book implements Serializable {
     private Long id;
     private String title;
     private String author;
-    private String category;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
     private String imageName;
 
     public String getImagePath() {
@@ -62,11 +65,11 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

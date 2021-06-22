@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head"></head>
 <body>
 <header th:replace="fragments/header"></header>
 <section class="container">
     <h1 th:text="${title}"></h1>
+    <ul class="book-filters">
+        <li><a href="#">All</a></li>
+        <li th:each="category: ${categories}">
+            <a th:href="${'/books?categoryId='+category.id}"
+               th:text="${category.name}">
+            </a>
+        </li>
+    </ul>
     <div class="book-list">
         <p th:if="${books.isEmpty()}"
-             th:text="'No books yet! Use the \'New\' button to add some books.'"></p>
+           th:text="'No books yet! Use the \'New\' button to add some books.'"></p>
         <div class="book" th:each="book: ${books}">
             <div class="img-container"><img th:src="${book.imagePath}"></div>
             <div class="info">
                 <div th:text="${book.title}">Mark</div>
                 <div th:text="${book.author}">Mark</div>
-                <div th:text="${book.category}">Mark</div>
+                <div th:text="${book.category.name}">Mark</div>
             </div>
             <div class="buttons" sec:authorize="isAuthenticated()">
                 <a class="btn btn-success btn-sm" th:href="'/books/edit/'+${book.id}">Edit</a>

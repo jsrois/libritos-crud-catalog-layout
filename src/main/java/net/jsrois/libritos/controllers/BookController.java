@@ -3,6 +3,7 @@ package net.jsrois.libritos.controllers;
 import net.jsrois.libritos.models.Book;
 import net.jsrois.libritos.services.BookCoverService;
 import net.jsrois.libritos.services.BookService;
+import net.jsrois.libritos.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,18 +20,28 @@ public class BookController {
 
     private BookService bookService;
     private BookCoverService bookCoverService;
+    private CategoryService categoryService;
 
     @Autowired
-    public BookController(BookService bookService, BookCoverService bookCoverService) {
+    public BookController(BookService bookService, BookCoverService bookCoverService, CategoryService categoryService) {
         this.bookService = bookService;
         this.bookCoverService = bookCoverService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("")
-    String listBooks(Model model) {
-        List<Book> books = bookService.allBooks();
+    String listBooks(Model model, @RequestParam(required = false) Long categoryId) {
+
+        List<Book> books;
+        if (categoryId == null) {
+            books = bookService.allBooks();
+        } else {
+            books = categoryService.getCategory(categoryId).getBooks();
+        }
+
         model.addAttribute("title", "Book list");
         model.addAttribute("books", books);
+        model.addAttribute("categories", categoryService.allCategories());
         return "books/all";
     }
 
@@ -39,6 +50,7 @@ public class BookController {
         Book book = new Book();
         model.addAttribute("book", book);
         model.addAttribute("title", "Create new book");
+        model.addAttribute("categories", categoryService.allCategories());
         return "books/new";
     }
 
